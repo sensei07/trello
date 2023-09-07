@@ -1,13 +1,15 @@
 import { BoardCard } from '@/components'
+import { prisma } from '@/core/prisma'
 
-export default function Home() {
+export default async function Home() {
+	const boards = await prisma.boards.findMany()
+
 	return (
 		<div className='container mx-auto'>
 			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-				<BoardCard id='1' title='Board 1' />
-				<BoardCard id='2' title='Board 2' />
-				<BoardCard id='3' title='Board 3' />
-				<BoardCard id='4' title='Board 4' />
+				{boards.map(board => (
+					<BoardCard key={board.id} id={board.id} title={board.title} />
+				))}
 			</div>
 		</div>
 	)
