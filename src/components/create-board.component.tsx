@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { Input } from './input.components'
+import { Input } from '.'
 
 const createBoardSchema = z.object({
 	title: z.string().min(1).max(20),
