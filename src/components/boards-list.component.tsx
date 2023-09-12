@@ -4,11 +4,11 @@ import { useBoards } from '@/hooks/use-boards'
 import { Boards } from '@prisma/client'
 import { BoardCard, CreateBoard } from '.'
 
-interface BoardsList {
+interface BoardsListProps {
 	initialData: Boards[]
 }
 
-export function BoardsList({ initialData }: BoardsList) {
+export function BoardsList({ initialData }: BoardsListProps) {
 	const { data: boards } = useBoards({ initialData })
 
 	return (

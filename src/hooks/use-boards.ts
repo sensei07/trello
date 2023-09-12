@@ -1,18 +1,9 @@
+import { api } from '@/core/api'
 import { Boards } from '@prisma/client'
 import { useQuery } from '@tanstack/react-query'
 
 const getBoardsFn = async () => {
-	// const { data } = await api.get<Boards[]>('/api/boards')
-	const data = [
-		{
-			id: '1',
-			title: 'Board 1',
-		},
-		{
-			id: '2',
-			title: 'Board 2',
-		},
-	]
+	const { data } = await api.get<Boards[]>('/api/boards')
 	return data
 }
 
@@ -27,6 +18,8 @@ export const useBoards = ({ initialData }: UseBoardsOptions) => {
 		queryKey: useBoardQueryKey,
 		queryFn: getBoardsFn,
 		initialData,
+		staleTime: Infinity,
+		cacheTime: 0,
 	})
 
 	return query
